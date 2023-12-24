@@ -272,7 +272,7 @@ async function constructTweetsOfTheDay(deltaDay : number) : Promise<TweetOfTheDa
                     const dateTweet = new Date(parseInt(dateSplit[0]),parseInt(dateSplit[1])-1,parseInt(dateSplit[2]),parseInt(timeSplit[0]),parseInt(timeSplit[1]),parseInt(timeSplit[2]));
                     // console.log(dateTweet);
                     if (dateTweet.getDate() === currentDay.getDate() && dateTweet.getMonth() === currentDay.getMonth() && dateTweet.getFullYear() === currentDay.getFullYear()) {
-                        // if (dateTweet >= currentDay) {
+                        if ((deltaDay == 0 && dateTweet >= currentDay)  || deltaDay >0 ) {
                             const description = fileSplit[2].split(".")[0];
                             const splitedDescription = description.split("-");
                             const descriptionTweet = splitedDescription.join(" ");
@@ -283,7 +283,7 @@ async function constructTweetsOfTheDay(deltaDay : number) : Promise<TweetOfTheDa
                                 filePath : filePath
                             }
                             tweeteraccount.tweets.push(newTweet);
-                        // }
+                        }
                     }
                 }
             }
